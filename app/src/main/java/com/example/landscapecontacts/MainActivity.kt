@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val animatedBackground:AnimationDrawable = mainLayout.background as AnimationDrawable
         animatedBackground.setEnterFadeDuration(2500)
-        animatedBackground.setExitFadeDuration(5000)
+        animatedBackground.setExitFadeDuration(2500)
         animatedBackground.start()
     }
 }
