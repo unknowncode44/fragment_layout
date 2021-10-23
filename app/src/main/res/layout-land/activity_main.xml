@@ -10,87 +10,37 @@
     android:padding="5dp"
     >
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+
+    <fragment
+        android:id="@+id/frag_1"
         android:layout_width="230dp"
         android:layout_height="match_parent"
-        android:background="@drawable/black_shape"
-        android:padding="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frag_2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.example.landscapecontacts.ContactList"/>
 
-        <TextView
-            android:id="@+id/title_contactos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="5dp"
-            android:elevation="10dp"
-            android:text="@string/contactos"
-            android:textAlignment="center"
-            android:textColor="@color/Silver"
-            android:textSize="20sp" />
-
-        <RelativeLayout
-            android:id="@+id/list_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/title_contactos"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:padding="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-
-
-            <!--RECYCLER VIEW PARA FRAGMENT 1-->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_contacts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:background="@drawable/black_shape"
+    <fragment
+        android:id="@+id/frag_2"
         android:layout_width="470dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/black_shape"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        app:layout_constraintStart_toEndOf="@+id/frag_1"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
+        android:name="com.example.landscapecontacts.ContactsDetails">
 
-        <!-- COLOCAR FRAGMENT DEL CONTENIDO AQUI -->
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/contentPanel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            />
-
-    </RelativeLayout>
+    </fragment>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,13 +9,15 @@
         <entry key="app/src/main/res/drawable/contact_list_shape_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/gradient_list.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/white_shape_01.xml" value="0.34479166666666666" />
-        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.5207667731629393" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/contact_card.xml" value="0.618204804045512" />
+        <entry key="app/src/main/res/layout/contact_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/contacts_details.xml" value="0.18177083333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
