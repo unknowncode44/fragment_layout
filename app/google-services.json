@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8370438742",
+    "project_id": "firestoreexample-f7e4c",
+    "storage_bucket": "firestoreexample-f7e4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8370438742:android:8696dafa0a02eba793f1f7",
+        "android_client_info": {
+          "package_name": "com.example.landscapecontacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8370438742-qgivqfem48n553gbg8qksi5tpsltstn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIEH5-ywq4ak_PlIWeL-l5IBQ9tNVZQ_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8370438742-qgivqfem48n553gbg8qksi5tpsltstn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
