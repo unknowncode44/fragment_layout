@@ -21,6 +21,8 @@ class ContactList : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactArrayList: ArrayList<Contact>
     private lateinit var adapter: ContactCardAdapter
+    private lateinit var bundle: Bundle
+    private lateinit var contactDetailsFragment: ContactsDetails
 
 
 
@@ -51,6 +53,12 @@ class ContactList : Fragment() {
             override fun onItemClick(position: Int, name: String, number: String, email: String) {
 
                 // TODO: 24/10/21 MANDAR LOS DATOS AL OTRO FRAGMENT, YA LOS TENEMOS!
+                bundle.putString("identifier", number)
+                contactDetailsFragment.arguments = bundle
+
+//                val frTransaction = fragmentManager?.beginTransaction()
+//                //seguir aca
+
 
 
                 Toast.makeText(context, "hiciste click en $position nombre $name, numero $number, email $email", Toast.LENGTH_LONG).show()

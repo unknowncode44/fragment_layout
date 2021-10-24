@@ -4,9 +4,174 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black_shape"
-    tools:context=".ContactsDetails">
+    tools:context=".ContactsDetails"
+    android:padding="5dp"
+    >
 
     <!-- COLOCAR FRAGMENT DEL CONTENIDO AQUI -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="5dp"
+        >
+        <!--CAJA HEADER-->
+        <LinearLayout
+            android:id="@+id/header_box"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:orientation="horizontal">
+            <!--CAJA IMAGEN-->
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <!--IMAGEN-->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_launcher_round" />
+
+            </RelativeLayout>
+
+            <!--CAJA TITULO - NOMBRE-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+
+                >
+                <!--NOMBRE-->
+                <TextView
+                    android:id="@+id/detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matias Orellana"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Stack Developer"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="normal" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--LINEA DIVISION-->
+        <RelativeLayout
+            android:background="@drawable/white_shape_01"
+            android:id="@+id/divider_line_01"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/header_box"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
+            />
+
+        <!--PERSONAL DATA-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/divider_line_01"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <!--TITULO CONTACT INFO-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Informacion de contacto"
+                android:textSize="22sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"/>
+            <!--CAJA INFORMACION PERSONAL-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:paddingHorizontal="5dp"
+                android:orientation="horizontal"
+
+                >
+
+                <!--caja imagen telefono-->
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_baseline_contact_phone_24"
+                        android:layout_marginStart="10dp"/>
+                </RelativeLayout>
+                <!--numero-->
+                <TextView
+                    android:id="@+id/detail_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:text="299510040"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:paddingHorizontal="5dp"
+                android:orientation="horizontal"
+
+                >
+
+                <!--caja imagen email-->
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_baseline_alternate_email_24"
+                        android:layout_marginStart="10dp"/>
+                </RelativeLayout>
+                <!--email-->
+                <TextView
+                    android:id="@+id/detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:text="matiaz.orellana@gmail.com"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
