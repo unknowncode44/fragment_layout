@@ -5,13 +5,19 @@
       <map>
         <entry key="app/src/main/res/drawable/background_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/background_02.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/drawable/background_03.xml" value="0.3394871794871795" />
+        <entry key="app/src/main/res/drawable/background_04.xml" value="0.3394871794871795" />
+        <entry key="app/src/main/res/drawable/black_shape.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/contact_list_shape.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/contact_list_shape_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/gradient_list.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/white_shape_01.xml" value="0.34479166666666666" />
-        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.5207667731629393" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
-        <entry key="app/src/main/res/layout/contact_card.xml" value="0.618204804045512" />
+        <entry key="app/src/main/res/layout/contact_card.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/contact_list.xml" value="0.2484375" />
+        <entry key="app/src/main/res/layout/contacts_details.xml" value="0.2484375" />
+        <entry key="app/src/main/res/layout/fragment_lista_contactos.xml" value="0.32864583333333336" />
       </map>
     </option>
   </component>

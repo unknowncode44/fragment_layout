@@ -11,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/black_shape"
-        android:padding="2dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/title_contactos"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -26,7 +27,8 @@
             android:layout_marginBottom="5dp"
             android:elevation="10dp"
             android:text="@string/contactos"
-            android:textAlignment="center"
+            android:layout_marginStart="10dp"
+            android:textAlignment="textStart"
             android:textColor="@color/Silver"
             android:textSize="20sp" />
 
@@ -39,6 +41,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:padding="2dp"
+            android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -55,7 +58,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
