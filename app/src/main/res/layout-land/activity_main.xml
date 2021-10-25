@@ -10,22 +10,8 @@
     android:padding="5dp"
     >
 
-
     <fragment
-        android:id="@+id/frag_1"
-        android:layout_width="230dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/frag_2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:name="com.example.landscapecontacts.ContactList"/>
-
-    <fragment
-        android:id="@+id/frag_2"
+        android:id="@+id/frag"
         android:layout_width="470dp"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
@@ -36,9 +22,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frag_1"
         app:layout_constraintTop_toTopOf="parent"
-        android:name="com.example.landscapecontacts.ContactsDetails">
+        android:name="com.example.landscapecontacts.EmptyContainerFragment"/>
 
-    </fragment>
+
+    <fragment
+        android:id="@+id/frag_1"
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:name="com.example.landscapecontacts.ContactList"/>
+
+    <!--        app:layout_constraintEnd_toStartOf="@+id/frag_2"-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/frag_2"-->
+<!--        android:layout_width="470dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginBottom="4dp"-->
+<!--        android:background="@drawable/black_shape"-->
+<!--        android:padding="10dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/frag_1"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:name="com.example.landscapecontacts.ContactsDetails">-->
+
+<!--    </fragment>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

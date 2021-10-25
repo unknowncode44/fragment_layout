@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.runBlocking
 
 
 class ContactList : Fragment() {
@@ -21,8 +23,7 @@ class ContactList : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactArrayList: ArrayList<Contact>
     private lateinit var adapter: ContactCardAdapter
-    private lateinit var bundle: Bundle
-    private lateinit var contactDetailsFragment: ContactsDetails
+
 
 
 
@@ -50,24 +51,32 @@ class ContactList : Fragment() {
         // con esta funcion deberiamos mandar los items al otro fragment
 
         adapter.setOnItemClickListener(object : ContactCardAdapter.OnItemClickListener{
-            override fun onItemClick(position: Int, name: String, number: String, email: String) {
+            override fun onItemClick(position: Int, name: String, number: String, email: String, title: String, imageUrl: String)  {
 
                 // TODO: 24/10/21 MANDAR LOS DATOS AL OTRO FRAGMENT, YA LOS TENEMOS!
-                bundle.putString("identifier", number)
-                contactDetailsFragment.arguments = bundle
+                val bundle = Bundle()
+                bundle.putString("number",number)
+                bundle.putString("name",name)
+                bundle.putString("email",email)
+                bundle.putString("title",title)
+                bundle.putString("imageUrl",imageUrl)
 
-//                val frTransaction = fragmentManager?.beginTransaction()
-//                //seguir aca
+                val detailsFragment = ContactsDetails()
+                detailsFragment.arguments = bundle
+
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.frag, detailsFragment)
+                fragmentTransaction?.addToBackStack(null)
+                fragmentTransaction?.commit()
 
 
 
-                Toast.makeText(context, "hiciste click en $position nombre $name, numero $number, email $email", Toast.LENGTH_LONG).show()
+
+//                Toast.makeText(context, "hiciste click en $position nombre $name, title:$title , email $email, imagen $imageUrl",  Toast.LENGTH_LONG).show()
+
             }
 
         })
-
-
-
 
         readData()
 
@@ -102,6 +111,25 @@ class ContactList : Fragment() {
                 }
             })
 
+    }
+
+    fun  setInfo(identifier: String): Contact {
+        var contactInfo = Contact()
+        val dbRef = db.collection("contacts").document(identifier)
+        dbRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    contactInfo = document.toObject<Contact>()!!
+                    Log.d("DATOS", "DocumentSnapshot data: ${document.data}")
+
+                } else {
+                    Log.d("NO-EXISTE", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("ERROR", "get failed with ", exception)
+            }
+        return contactInfo
     }
 
 
