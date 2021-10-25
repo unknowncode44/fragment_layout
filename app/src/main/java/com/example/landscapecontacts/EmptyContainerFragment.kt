@@ -9,10 +9,7 @@ import android.view.ViewGroup
 
 class EmptyContainerFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    //creado exclusivamente para mostrar un fragment que luego reemplazaremos
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

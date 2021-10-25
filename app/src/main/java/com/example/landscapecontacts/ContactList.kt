@@ -7,53 +7,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.runBlocking
+
 
 
 class ContactList : Fragment() {
 
-    private var db = Firebase.firestore
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var contactArrayList: ArrayList<Contact>
-    private lateinit var adapter: ContactCardAdapter
-
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    // VARIABLES DE TRABAJO
+    private var db = Firebase.firestore // creamos una variable de tipo firestore
+    private lateinit var recyclerView: RecyclerView // variable para el recycler
+    private lateinit var contactArrayList: ArrayList<Contact> // variable para el array
+    private lateinit var adapter: ContactCardAdapter // otra para el adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        // VARIABLE VISTA, INSTANCIAMOS EL LAYOUT CORRESPONDIENTE
         val vista: View =  inflater.inflate(R.layout.contact_list, container, false)
-        recyclerView = vista.findViewById(R.id.recycler_contacts)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setHasFixedSize(true)
 
-        contactArrayList = arrayListOf()
 
-        adapter = ContactCardAdapter(contactArrayList)
+        // manejamos el recycler
+        recyclerView = vista.findViewById(R.id.recycler_contacts) // primero lo instaciamos con la vista del recycler creado
+        recyclerView.layoutManager = LinearLayoutManager(context) // le asignamos el manager
+        recyclerView.setHasFixedSize(true) // decimos que tiene un tamano fijo
 
-        recyclerView.adapter = adapter
 
-        // con esta funcion deberiamos mandar los items al otro fragment
+        contactArrayList = arrayListOf() // instanciamos el array
+        adapter = ContactCardAdapter(contactArrayList) // y se lo pasamos al adapter
+        recyclerView.adapter = adapter // instanciamos el adaptador que creamos
 
+        // con esta funcion vamos mandar los items al otro fragment
         adapter.setOnItemClickListener(object : ContactCardAdapter.OnItemClickListener{
+            // en el adaptador ya creamos un metodo que almacena los datos que necesitamos
             override fun onItemClick(position: Int, name: String, number: String, email: String, title: String, imageUrl: String)  {
-
-                // TODO: 24/10/21 MANDAR LOS DATOS AL OTRO FRAGMENT, YA LOS TENEMOS!
+                // usamos bundle para almacenar los datos en "cache" y asi poder usarlos en el otro fragment
                 val bundle = Bundle()
                 bundle.putString("number",number)
                 bundle.putString("name",name)
@@ -61,30 +53,29 @@ class ContactList : Fragment() {
                 bundle.putString("title",title)
                 bundle.putString("imageUrl",imageUrl)
 
-                val detailsFragment = ContactsDetails()
-                detailsFragment.arguments = bundle
+                val detailsFragment = ContactsDetails() // instacianciamos el otro fragment
+                detailsFragment.arguments = bundle // le pasamos el bundle con los datos guardados
 
+                // iniciamos la transcicion entre los fragments, reemplazando el fragment vacio que creamos exclusivamente para esto
                 val fragmentTransaction = fragmentManager?.beginTransaction()
                 fragmentTransaction?.replace(R.id.frag, detailsFragment)
                 fragmentTransaction?.addToBackStack(null)
-                fragmentTransaction?.commit()
-
-
-
-
-//                Toast.makeText(context, "hiciste click en $position nombre $name, title:$title , email $email, imagen $imageUrl",  Toast.LENGTH_LONG).show()
+                fragmentTransaction?.commit()// ejecutamos
 
             }
 
         })
 
+        // EJECUTAMOS LA FUNCION DE LECTURA DE DATOS EN DATABASE
         readData()
 
-
+        // RETORNAMOS VISTA
         return vista
     }
 
-    // CREAR FUNCION PARA OBTENER DATOS DESDE FIREBASE
+    //########################################################################---METODO DEL FRAGMENT---############################################################################//
+
+    // CREAMOS FUNCION PARA OBTENER DATOS DESDE FIREBASE FIRESTORE
     private fun readData() {
         // primero obtenemos la instancia de la db
         db = FirebaseFirestore.getInstance()
@@ -111,25 +102,6 @@ class ContactList : Fragment() {
                 }
             })
 
-    }
-
-    fun  setInfo(identifier: String): Contact {
-        var contactInfo = Contact()
-        val dbRef = db.collection("contacts").document(identifier)
-        dbRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    contactInfo = document.toObject<Contact>()!!
-                    Log.d("DATOS", "DocumentSnapshot data: ${document.data}")
-
-                } else {
-                    Log.d("NO-EXISTE", "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("ERROR", "get failed with ", exception)
-            }
-        return contactInfo
     }
 
 

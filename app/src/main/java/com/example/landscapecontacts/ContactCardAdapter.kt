@@ -1,6 +1,6 @@
 package com.example.landscapecontacts
 
-import android.icu.text.CaseMap
+
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +29,6 @@ class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerV
     override fun onBindViewHolder(holder: ContactCardViewHolder, position: Int) {
         val contact: Contact = contactList[position]
 
-
         holder.name.text = contact.name
         holder.number.text = contact.number
         holder.email.text = contact.email
@@ -37,9 +36,6 @@ class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerV
         holder.imageUrl.text = contact.image
 
     }
-
-
-
 
     override fun getItemCount(): Int {
         return contactList.size
@@ -51,8 +47,6 @@ class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerV
         val email: TextView = itemView.findViewById(R.id.contact_email)
         val title: TextView = itemView.findViewById(R.id.contact_title)
         val imageUrl: TextView = itemView.findViewById(R.id.contact_image_url)
-
-
 
         // le pasamos los datos que recogimos al listener para tenerlos disponibles para pasarlos al otro fragment
 
