@@ -9,10 +9,10 @@ El MainActivity es un contenedor que contendra dos fragments en su interior. Uno
 Fragment 0: Fragment vacio que luego reemplazaremos
 
 Fragment 1
-view id: recycler_contacts
+view id: frag_1
 
-Fragment2
-view id: contentPanel
+Fragment 2
+view id: frag_2
 
 Se utilizara un cardview para mostrar el contacto en el list view 
 
