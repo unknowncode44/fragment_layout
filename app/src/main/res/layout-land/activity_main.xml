@@ -24,6 +24,19 @@
         app:layout_constraintTop_toTopOf="parent"
         android:name="com.example.landscapecontacts.EmptyContainerFragment"/>
 
+    <fragment
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".5"
+        android:name="com.example.landscapecontacts.AddContact"/>
 
     <fragment
         android:id="@+id/frag_1"
@@ -32,7 +45,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
