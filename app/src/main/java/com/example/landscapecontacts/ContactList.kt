@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
+import com.squareup.okhttp.internal.Internal.instance
+import io.grpc.InternalChannelz.instance
+import io.grpc.util.TransmitStatusRuntimeExceptionInterceptor.instance
 
 
 class ContactList : Fragment() {
@@ -101,7 +104,6 @@ class ContactList : Fragment() {
                     adapter.notifyDataSetChanged() // notificamos al adaptador para que cree las tarjetas
                 }
             })
-
     }
 
 

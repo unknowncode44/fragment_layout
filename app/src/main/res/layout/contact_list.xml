@@ -63,20 +63,7 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/recycler_contacts"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="309dp"
-                android:layout_marginTop="576dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="41dp"
-                android:foreground="@android:drawable/ic_menu_add"
-                app:backgroundTint="@color/black"
-                android:elevation="50dp"/>
+
 
             <View
                 android:layout_width="380dp"
