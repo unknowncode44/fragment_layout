@@ -34,6 +34,7 @@ class ContactList : Fragment() {
         val vista: View =  inflater.inflate(R.layout.contact_list, container, false)
 
 
+
         // manejamos el recycler
         recyclerView = vista.findViewById(R.id.recycler_contacts) // primero lo instaciamos con la vista del recycler creado
         recyclerView.layoutManager = LinearLayoutManager(context) // le asignamos el manager
@@ -62,12 +63,18 @@ class ContactList : Fragment() {
                 // iniciamos la transcicion entre los fragments, reemplazando el fragment vacio que creamos exclusivamente para esto
                 val fragmentTransaction = fragmentManager?.beginTransaction()
                 fragmentTransaction?.replace(R.id.frag, detailsFragment)
-                fragmentTransaction?.addToBackStack(null)
-                fragmentTransaction?.commit()// ejecutamos
+                    ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+                    ?.addToBackStack(null)
+                    ?.commit()// ejecutamos
 
             }
 
+
+
         })
+
+
+
 
         // EJECUTAMOS LA FUNCION DE LECTURA DE DATOS EN DATABASE
         readData()

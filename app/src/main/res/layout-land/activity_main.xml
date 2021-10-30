@@ -10,7 +10,7 @@
     android:padding="5dp"
     >
 
-    <fragment
+    <FrameLayout
         android:id="@+id/frag"
         android:layout_width="470dp"
         android:layout_height="match_parent"
@@ -21,8 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frag_1"
-        app:layout_constraintTop_toTopOf="parent"
-        android:name="com.example.landscapecontacts.EmptyContainerFragment"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/frag_2"
@@ -35,11 +34,7 @@
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".5"
-        android:name="com.example.landscapecontacts.AddContact"
-        android:tag="showFrag">
-
-    </FrameLayout>
+        app:layout_constraintVertical_bias=".5"/>
 
     <fragment
         android:id="@+id/frag_1"
@@ -53,17 +48,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:name="com.example.landscapecontacts.ContactList"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:foreground="@drawable/add_contact"
+        android:text="button"
+        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frag"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintVertical_bias="0.894"
+        android:elevation="40dp"/>
 
     <!--        app:layout_constraintEnd_toStartOf="@+id/frag_2"-->
 

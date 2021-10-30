@@ -3,14 +3,12 @@ package com.example.landscapecontacts
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.landscapecontacts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    //Usamos el binding para hacer referencia al layout con la variable "view"
+    //Despues la implementamos con el setOnClickListener
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,10 +16,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
-        val mainLayout: ConstraintLayout = findViewById(R.id.background_screen)
-
-        val animatedBackground:AnimationDrawable = mainLayout.background as AnimationDrawable
+        val animatedBackground:AnimationDrawable = binding.backgroundScreen.background as AnimationDrawable
         animatedBackground.setEnterFadeDuration(2500)
         animatedBackground.setExitFadeDuration(2500)
         animatedBackground.start()
@@ -29,11 +24,19 @@ class MainActivity : AppCompatActivity() {
         //Inicio de actividad, se oculta el fragment (FrameLayout)
         deleteFrag()
 
-        //Llamamos al boton
-        val btn: Button = findViewById(R.id.btn)
-
         //Ejecutamos la funcion
-        btn.setOnClickListener {
+
+        binding.btn?.setOnClickListener {
+            if(binding.frag != null) {
+                val frag = supportFragmentManager.findFragmentById(R.id.frag)
+                val transaction = supportFragmentManager.beginTransaction()
+                if (frag != null) {
+                    transaction
+                        .setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+                        .remove(frag)
+                        .commit()
+                }
+            }
             showFrag()
         }
 
@@ -51,9 +54,12 @@ class MainActivity : AppCompatActivity() {
         //Esta condicion, sino se muestra una y otra vez el fragment, uno arriba del otro
         if(frag == null){
             transaction
-                .setCustomAnimations(R.anim.up_to_down, R.anim.center_to_down)
+                .setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
                 .add(R.id.frag_2, fragment)
                 .commit()
+            binding.btn!!.foreground = getDrawable(R.drawable.back)
+        } else{
+            deleteFrag()
         }
     }
 
@@ -63,8 +69,10 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         if (frag != null) {
             transaction
+                .setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
                 .remove(frag)
                 .commit()
+            binding.btn!!.foreground = getDrawable(R.drawable.add_contact)
         }
     }
 }
