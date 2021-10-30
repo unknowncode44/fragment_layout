@@ -58,7 +58,7 @@ class ContactList : Fragment() {
 
                 // iniciamos la transcicion entre los fragments, reemplazando el fragment vacio que creamos exclusivamente para esto
                 val fragmentTransaction = fragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.frag, detailsFragment)
+                fragmentTransaction?.replace(R.id.frag_1, detailsFragment)
                 fragmentTransaction?.addToBackStack(null)
                 fragmentTransaction?.commit()// ejecutamos
 
