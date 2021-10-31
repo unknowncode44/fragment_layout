@@ -7,7 +7,4 @@
     tools:context=".ContactsDetails"
     android:padding="5dp"
     >
-
-
-
 </RelativeLayout>

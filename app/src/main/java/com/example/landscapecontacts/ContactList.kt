@@ -1,30 +1,29 @@
 package com.example.landscapecontacts
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.squareup.okhttp.internal.Internal.instance
-import io.grpc.InternalChannelz.instance
-import io.grpc.util.TransmitStatusRuntimeExceptionInterceptor.instance
 
 
 class ContactList : Fragment() {
 
     // VARIABLES DE TRABAJO
+    var isActive: Boolean = false
     private var db = Firebase.firestore // creamos una variable de tipo firestore
     private lateinit var recyclerView: RecyclerView // variable para el recycler
     private lateinit var contactArrayList: ArrayList<Contact> // variable para el array
     private lateinit var adapter: ContactCardAdapter // otra para el adapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,21 +58,32 @@ class ContactList : Fragment() {
 
                 val detailsFragment = ContactsDetails() // instacianciamos el otro fragment
                 detailsFragment.arguments = bundle // le pasamos el bundle con los datos guardados
+                val fragmentLayout: Int = (R.id.frag)
+                val addContactFragment = (R.id.frag_2)
+                val addContactIsActive: Boolean = MainActivity().isActive
 
-                // iniciamos la transcicion entre los fragments, reemplazando el fragment vacio que creamos exclusivamente para esto
-                val fragmentTransaction = fragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.frag, detailsFragment)
-                    ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                    ?.addToBackStack(null)
-                    ?.commit()// ejecutamos
+
+                isActive = if (!addContactIsActive) {
+                    deleteFrag(addContactFragment)
+                    showFrag(detailsFragment, fragmentLayout)
+                    true
+
+                } else {
+                    showFrag(detailsFragment, fragmentLayout)
+                    true
+                }
+
+
+//                val fragmentTransaction = fragmentManager?.beginTransaction()
+//                fragmentTransaction?.replace(R.id.frag, detailsFragment)
+//                    ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+//                    ?.commit()
+
 
             }
 
 
-
         })
-
-
 
 
         // EJECUTAMOS LA FUNCION DE LECTURA DE DATOS EN DATABASE
@@ -111,6 +121,38 @@ class ContactList : Fragment() {
                     adapter.notifyDataSetChanged() // notificamos al adaptador para que cree las tarjetas
                 }
             })
+    }
+    //Muestra el fragment
+    private fun showFrag(fragment: Fragment, fragLayOut: Int ){
+        val frag = fragmentManager?.findFragmentById(fragLayOut)
+        val transaction = fragmentManager?.beginTransaction()
+        val currentFragment = fragment
+        //Esta condicion, sino se muestra una y otra vez el fragment, uno arriba del otro
+        if(frag == null){
+            transaction
+                ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+                ?.add(fragLayOut, currentFragment)
+                ?.commit()
+        } else{
+            deleteFrag(fragLayOut)
+            transaction
+                ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+                ?.add(fragLayOut, currentFragment)
+                ?.commit()
+
+        }
+    }
+
+    //Borra el fragment
+    private fun deleteFrag(fragLayOut: Int) {
+        val frag = fragmentManager?.findFragmentById(fragLayOut)
+        val transaction = fragmentManager?.beginTransaction()
+        if (frag != null) {
+            transaction
+                ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
+                ?.remove(frag)
+                ?.commit()
+        }
     }
 
 

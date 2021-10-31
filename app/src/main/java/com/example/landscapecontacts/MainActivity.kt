@@ -1,15 +1,19 @@
 package com.example.landscapecontacts
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.landscapecontacts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    var isActive: Boolean = false
+
     //Usamos el binding para hacer referencia al layout con la variable "view"
     //Despues la implementamos con el setOnClickListener
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             showFrag()
+            isActive = true
         }
 
         //Cualquiera fuera la "view" sobre la cual se haga "click", cierra el fragment
@@ -47,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Muestra el fragment
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun showFrag(){
         val frag = supportFragmentManager.findFragmentById(R.id.frag_2)
         val transaction = supportFragmentManager.beginTransaction()
@@ -64,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Borra el fragment
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun deleteFrag(){
         val frag = supportFragmentManager.findFragmentById(R.id.frag_2)
         val transaction = supportFragmentManager.beginTransaction()
