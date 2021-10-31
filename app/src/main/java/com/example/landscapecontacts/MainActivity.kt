@@ -2,10 +2,8 @@ package com.example.landscapecontacts
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import com.example.landscapecontacts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

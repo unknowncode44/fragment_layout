@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/add_contact.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/back.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/background_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/background_02.xml" value="0.34479166666666666" />
@@ -13,10 +14,14 @@
         <entry key="app/src/main/res/drawable/contact_list_shape_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/edittext.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/gradient_list.xml" value="0.34479166666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.20520833333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_back_24.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/round_for.xml" value="0.1953125" />
+        <entry key="app/src/main/res/drawable/shape_button.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/shape_fragment_ejemplo.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/transparent_shape.xml" value="0.1953125" />
+        <entry key="app/src/main/res/drawable/transparent_shape2.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/white_shape_01.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.246484375" />
