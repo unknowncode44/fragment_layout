@@ -8,4 +8,6 @@
     <string name="number">Numero</string>
     <string name="email">Email</string>
     <string name="add_contact"> + Añadir </string>
+    <string name="title">Titulo</string>
+    <string name="modi">Modificar</string>
 </resources>

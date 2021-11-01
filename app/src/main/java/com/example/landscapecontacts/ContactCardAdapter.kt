@@ -1,11 +1,14 @@
 package com.example.landscapecontacts
 
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.util.Util.getSnapshot
+import com.google.firebase.firestore.DocumentSnapshot
 
 
 class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerView.Adapter<ContactCardAdapter.ContactCardViewHolder>() {

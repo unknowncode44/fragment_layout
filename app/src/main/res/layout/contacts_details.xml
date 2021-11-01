@@ -118,9 +118,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:text="Informacion de Contacto"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:text="Informacion de Contacto"
                 android:textStyle="italic" />
             <!--CAJA INFORMACION PERSONAL-->
             <LinearLayout
@@ -182,6 +182,16 @@
                     android:textColor="@color/white"
                     android:textSize="20sp" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/modify"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@android:drawable/ic_menu_edit"
+                android:text="@string/modi"
+                android:textSize="12sp"/>
 
 
         </LinearLayout>

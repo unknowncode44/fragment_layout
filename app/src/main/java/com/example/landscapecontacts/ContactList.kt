@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
@@ -50,6 +51,8 @@ class ContactList : Fragment() {
             override fun onItemClick(position: Int, name: String, number: String, email: String, title: String, imageUrl: String)  {
                 // usamos bundle para almacenar los datos en "cache" y asi poder usarlos en el otro fragment
                 val bundle = Bundle()
+
+
                 bundle.putString("number",number)
                 bundle.putString("name",name)
                 bundle.putString("email",email)
