@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_add_contact.*
 
 
 class ModifyContacts : Fragment() {
@@ -34,7 +35,6 @@ class ModifyContacts : Fragment() {
 
         // antes de inflar la vista le pasamos los datos que almacenamos en
         // el otro fragment, en el metodo onItemClick, para que nos muestre los datos del contacto que estamos seleccionando
-        id = "${arguments?.getString("id")}"
         name.setText("${arguments?.getString("name")}")// nombre
         number.setText("${arguments?.getString("number")}") // numero
         email.setText("${arguments?.getString("email")}")// email
@@ -42,7 +42,8 @@ class ModifyContacts : Fragment() {
 
         btn = vista.findViewById(R.id.btn)
         btn.setOnClickListener {
-            db.collection("contacts").document(id).set(
+            db.collection("contacts").document(number.text.toString()).delete()
+            db.collection("contacts").document(number.text.toString()).set(
                 hashMapOf(
                     "email" to email.text.toString(),
                     "number" to number.text.toString(),
@@ -52,8 +53,28 @@ class ModifyContacts : Fragment() {
             )
             val frag: Int = (R.id.frag_3)
             deleteFrag(frag)
+
+            //para refrescar el frag, se debe borroar y volver a iniciar
+            val contactList = ContactList()
+            val frag2: Int = (R.id.frag_1)
+            deleteFrag(frag2)
+            showFrag(contactList, frag2)
+
         }
         return vista
+    }
+
+    //Muestra el fragment
+    private fun showFrag(fragment: Fragment, fragLayOut: Int ){
+        val frag = fragmentManager?.findFragmentById(fragLayOut)
+        val transaction = fragmentManager?.beginTransaction()
+        val currentFragment = fragment
+        //Esta condicion, sino se muestra una y otra vez el fragment, uno arriba del otro
+        if(frag == null){
+            transaction
+                ?.add(fragLayOut, currentFragment)
+                ?.commit()
+        }
     }
 
     //Borra el fragment

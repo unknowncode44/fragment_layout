@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.util.Util.getSnapshot
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerView.Adapter<ContactCardAdapter.ContactCardViewHolder>() {
 
     // creamos este listener para escuchar luego si hacen un click en uno de los contactos, de esa manera recogeremos la data y la mandaremos al otro fragment
     private lateinit var mListener: OnItemClickListener
+    private var db = Firebase.firestore
     interface OnItemClickListener {
         fun onItemClick(position: Int, name: String, number: String, email: String, title: String, imageUrl: String) // definimos las variables que obtendremos al tocar el boton
     }
@@ -31,6 +34,8 @@ class ContactCardAdapter(private val contactList: ArrayList<Contact>): RecyclerV
 
     override fun onBindViewHolder(holder: ContactCardViewHolder, position: Int) {
         val contact: Contact = contactList[position]
+
+        db.collection("contacts").document(contact.name.toString()).get()
 
         holder.name.text = contact.name
         holder.number.text = contact.number

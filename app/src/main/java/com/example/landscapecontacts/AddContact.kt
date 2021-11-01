@@ -53,9 +53,7 @@ class AddContact : Fragment() {
                     "title" to title.text.toString()
                 )
 
-                val newContact: String = number.text.toString()
-
-                db.collection("contacts").document(newContact)
+                db.collection("contacts").document(number.text.toString())
                     .set(contact)
                     .addOnSuccessListener { Log.d(TAG, "Se agregaron los datos con exito") }
                     .addOnFailureListener{e -> Log.w(TAG, "Error en la carga", e)}
