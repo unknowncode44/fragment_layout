@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/round_for.xml" value="0.1953125" />
         <entry key="app/src/main/res/drawable/shape_button.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/drawable/shape_button_02.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/shape_fragment_ejemplo.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/drawable/transparent_shape.xml" value="0.1953125" />
         <entry key="app/src/main/res/drawable/transparent_shape2.xml" value="0.20520833333333333" />
@@ -28,11 +29,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/contact_card.xml" value="0.5" />
         <entry key="app/src/main/res/layout/contact_list.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/contacts_details.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/contacts_details.xml" value="0.32952924393723254" />
         <entry key="app/src/main/res/layout/contacts_details_empty.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_add_contact.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/fragment_empty_container.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_lista_contactos.xml" value="0.32864583333333336" />
+        <entry key="app/src/main/res/layout/fragment_modify_contacts.xml" value="0.32864583333333336" />
       </map>
     </option>
   </component>

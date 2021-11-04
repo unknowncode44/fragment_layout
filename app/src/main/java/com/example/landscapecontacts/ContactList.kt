@@ -63,11 +63,13 @@ class ContactList : Fragment() {
                 detailsFragment.arguments = bundle // le pasamos el bundle con los datos guardados
                 val fragmentLayout: Int = (R.id.frag)
                 val addContactFragment = (R.id.frag_2)
+                val modifyContacts = (R.id.frag_3)
                 val addContactIsActive: Boolean = MainActivity().isActive
 
 
                 isActive = if (!addContactIsActive) {
                     deleteFrag(addContactFragment)
+                    deleteFrag(modifyContacts)
                     showFrag(detailsFragment, fragmentLayout)
                     true
 

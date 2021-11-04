@@ -28,6 +28,8 @@ class ModifyContacts : Fragment() {
     ): View? {
         val vista = inflater.inflate(R.layout.fragment_modify_contacts, container, false)
 
+        val btnCancel: Button = vista.findViewById(R.id.btn_cancel)
+
         name = vista.findViewById(R.id.name)
         number = vista.findViewById(R.id.number)
         email = vista.findViewById(R.id.email)
@@ -61,6 +63,11 @@ class ModifyContacts : Fragment() {
             showFrag(contactList, frag2)
 
         }
+
+        btnCancel.setOnClickListener {
+            deleteFrag(R.id.frag_3)
+        }
+
         return vista
     }
 

@@ -2,6 +2,7 @@ package com.example.landscapecontacts
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.system.Os.remove
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,9 +13,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import java.util.*
 
 class AddContact : Fragment() {
 
@@ -34,15 +32,15 @@ class AddContact : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_contact, container, false)
 
         val addContactFragment = (R.id.frag_2)
-
         val image: ImageView = view.findViewById(R.id.image)
         val name: EditText = view.findViewById(R.id.name)
         val number: EditText = view.findViewById(R.id.number)
         val email: EditText = view.findViewById(R.id.email)
         val title: EditText = view.findViewById(R.id.title)
-        val btn: Button = view.findViewById(R.id.btn)
+        val btnAdd: Button = view.findViewById(R.id.btn)
 
-        btn.setOnClickListener {
+
+        btnAdd.setOnClickListener {
 
             if(name.text.isNotEmpty() && number.text.isNotEmpty() && email.text.isNotEmpty()
                 && title.text.isNotEmpty()){
@@ -68,6 +66,8 @@ class AddContact : Fragment() {
         }
 
 
+
+
         return view
     }
 
@@ -80,6 +80,8 @@ class AddContact : Fragment() {
                 ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
                 ?.remove(frag)
                 ?.commit()
+
         }
+
     }
 }

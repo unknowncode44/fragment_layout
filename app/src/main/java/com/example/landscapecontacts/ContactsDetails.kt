@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -50,7 +50,10 @@ class ContactsDetails : Fragment() {
         title.text = "${arguments?.getString("title")}" // subtitulo
         Glide.with(this).load(imageUrl).into(image) // aca desplegamos la imagen desde la url que almacenamos en la db
 
-        val btn: Button = vista.findViewById(R.id.modify)
+        val btn: ImageButton = vista.findViewById(R.id.modify)
+        val fragmentLayout: Int = (R.id.frag_3)
+        val fragLayOut2: Int = (R.id.frag)
+
         btn.setOnClickListener {
             // usamos bundle para almacenar los datos en "cache" y asi poder usarlos en el otro fragment
             val bundle = Bundle()
@@ -64,11 +67,10 @@ class ContactsDetails : Fragment() {
 
             val modifyFragment = ModifyContacts() // instacianciamos el otro fragment
             modifyFragment.arguments = bundle // le pasamos el bundle con los datos guardados
-            val fragmentLayout: Int = (R.id.frag_3)
-            val fragLayOut2: Int = (R.id.frag)
             showFrag(modifyFragment, fragmentLayout)
             deleteFrag(fragLayOut2)
         }
+
 
         // una vez que ya tenemos los valores instanciados en sus respectivas variables, solo resta inflar la vista
         return vista
