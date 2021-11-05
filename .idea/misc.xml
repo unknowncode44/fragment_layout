@@ -24,7 +24,7 @@
         <entry key="app/src/main/res/drawable/transparent_shape.xml" value="0.1953125" />
         <entry key="app/src/main/res/drawable/transparent_shape2.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/white_shape_01.xml" value="0.34479166666666666" />
-        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/contact_card.xml" value="0.5" />

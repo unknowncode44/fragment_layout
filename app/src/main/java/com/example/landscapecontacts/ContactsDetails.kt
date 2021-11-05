@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class ContactsDetails : Fragment() {
@@ -21,8 +24,8 @@ class ContactsDetails : Fragment() {
     private lateinit var title: TextView
     private lateinit var image: ImageView
     private lateinit var imageUrl: String
-    //Obtenemos el id del documento
-    private lateinit var id: String
+    private lateinit var btn2: Button
+    private val db = Firebase.firestore
 
 
     override fun onCreateView(
@@ -42,8 +45,6 @@ class ContactsDetails : Fragment() {
 
         // antes de inflar la vista le pasamos los datos que almacenamos en
         // el otro fragment, en el metodo onItemClick, para que nos muestre los datos del contacto que estamos seleccionando
-        //Obtenemos el id
-        id = "${arguments?.getString("id")}"
         name.text = "${arguments?.getString("name")}" // nombre
         number.text = "${arguments?.getString("number")}" // numero
         email.text = "${arguments?.getString("email")}" // email
@@ -57,8 +58,7 @@ class ContactsDetails : Fragment() {
         btn.setOnClickListener {
             // usamos bundle para almacenar los datos en "cache" y asi poder usarlos en el otro fragment
             val bundle = Bundle()
-            //Mandamos el id
-            bundle.putString("id", id)
+
             bundle.putString("number",number.text.toString())
             bundle.putString("name",name.text.toString())
             bundle.putString("email",email.text.toString())
@@ -71,6 +71,11 @@ class ContactsDetails : Fragment() {
             deleteFrag(fragLayOut2)
         }
 
+
+        //btn2 = vista.findViewById(R.id.delete)
+        //btn2.setOnClickListener {
+        //    deleteContact(number.text.toString())
+        //}
 
         // una vez que ya tenemos los valores instanciados en sus respectivas variables, solo resta inflar la vista
         return vista
@@ -102,5 +107,10 @@ class ContactsDetails : Fragment() {
                 ?.remove(frag)
                 ?.commit()
         }
+    }
+
+    //Borra el documento
+    private fun deleteContact(number: String){
+        db.collection("contacts").document(number).delete()
     }
 }
