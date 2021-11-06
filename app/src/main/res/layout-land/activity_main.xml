@@ -62,13 +62,13 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:foreground="@drawable/add_contact"
         android:text="button"
-        android:backgroundTint="@color/Silver"
+        android:background="@drawable/shape_button_02"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"

@@ -71,29 +71,20 @@ class ContactsDetails : Fragment() {
             deleteFrag(fragLayOut2)
         }
 
-
-        //btn2 = vista.findViewById(R.id.delete)
-        //btn2.setOnClickListener {
-        //    deleteContact(number.text.toString())
-        //}
-
         // una vez que ya tenemos los valores instanciados en sus respectivas variables, solo resta inflar la vista
         return vista
 
-
     }
-
 
     //Muestra el fragment
     private fun showFrag(fragment: Fragment, fragLayOut: Int ){
         val frag = fragmentManager?.findFragmentById(fragLayOut)
         val transaction = fragmentManager?.beginTransaction()
-        val currentFragment = fragment
         //Esta condicion, sino se muestra una y otra vez el fragment, uno arriba del otro
         if(frag == null){
             transaction
                 ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                ?.add(fragLayOut, currentFragment)
+                ?.add(fragLayOut, fragment)
                 ?.commit()
         }
     }

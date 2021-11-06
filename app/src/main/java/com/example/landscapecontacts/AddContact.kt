@@ -1,28 +1,19 @@
 package com.example.landscapecontacts
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.system.Os.remove
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AddContact : Fragment() {
 
-
     private var db = FirebaseFirestore.getInstance()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +22,14 @@ class AddContact : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_contact, container, false)
 
-        val addContactFragment = (R.id.frag_2)
-        val image: ImageView = view.findViewById(R.id.image)
+        val addContactFragment: Int = (R.id.frag_3)
         val name: EditText = view.findViewById(R.id.name)
         val number: EditText = view.findViewById(R.id.number)
         val email: EditText = view.findViewById(R.id.email)
         val title: EditText = view.findViewById(R.id.title)
-        val btnAdd: Button = view.findViewById(R.id.btn)
+        val btnAdd: Button = view.findViewById(R.id.add)
 
+        val main = MainActivity()
 
         btnAdd.setOnClickListener {
 
@@ -57,16 +48,11 @@ class AddContact : Fragment() {
                     .addOnFailureListener{e -> Log.w(TAG, "Error en la carga", e)}
 
                 Toast.makeText(context, "Nuevo contacto creado", Toast.LENGTH_LONG).show()
-                deleteFrag(addContactFragment)
+                main.deleteFrag(fragmentManager!!, addContactFragment)
             }else{
                 Toast.makeText(context, "Campos Obligatorios", Toast.LENGTH_LONG).show()
             }
-
-
         }
-
-
-
 
         return view
     }
@@ -80,8 +66,6 @@ class AddContact : Fragment() {
                 ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
                 ?.remove(frag)
                 ?.commit()
-
         }
-
     }
 }

@@ -130,7 +130,7 @@
         app:layout_constraintVertical_bias=".02" />
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/add"
         android:background="@drawable/shape_button"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
