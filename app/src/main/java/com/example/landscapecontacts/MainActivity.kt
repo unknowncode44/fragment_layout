@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -50,6 +51,12 @@ class MainActivity : AppCompatActivity() {
         view.setOnClickListener {
             deleteFrag(supportFragmentManager, R.id.frag_3)
         }
+
+        if (binding.frag2?.isActivated == true){
+            binding.btn?.foreground = getDrawable(R.drawable.back)
+        }else{
+            binding.btn?.foreground = getDrawable(R.drawable.add_contact)
+        }
     }
 
     //Para que el metodo funcione en los fragment, tenemos que pasar el tipo de
@@ -66,8 +73,8 @@ class MainActivity : AppCompatActivity() {
                 .setCustomAnimations(R.anim.enter_from_above, R.anim.enter_from_above)
                 .add(frame, fragment)
                 .commit()
-            val btnImg: ImageButton = findViewById(R.id.btn)
-            btnImg.foreground = getDrawable(R.drawable.back)
+            //val btn: ImageButton = findViewById(btnRef)
+            //btn.foreground = getDrawable(R.drawable.back)
         } else{
             deleteFrag(supportFragmentManager, frame)
         }
@@ -83,8 +90,7 @@ class MainActivity : AppCompatActivity() {
                 .setCustomAnimations(R.anim.exit_to_above, R.anim.exit_to_above)
                 .remove(frag)
                 .commit()
-            val btnImg: ImageButton = findViewById(R.id.btn)
-            btnImg.foreground = getDrawable(R.drawable.add_contact)
+            //binding.btn?.foreground = getDrawable(R.drawable.add_contact)
         }
     }
 }

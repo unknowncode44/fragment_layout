@@ -1,14 +1,12 @@
 package com.example.landscapecontacts
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
@@ -24,7 +22,7 @@ class ContactList : Fragment() {
     private lateinit var recyclerView: RecyclerView // variable para el recycler
     private lateinit var contactArrayList: ArrayList<Contact> // variable para el array
     private lateinit var adapter: ContactCardAdapter // otra para el adapter
-
+    private var main = MainActivity()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,28 +64,16 @@ class ContactList : Fragment() {
                 val modifyContacts = (R.id.frag_3)
                 val addContactIsActive: Boolean = MainActivity().isActive
 
-
                 isActive = if (!addContactIsActive) {
-                    deleteFrag(addContactFragment)
-                    deleteFrag(modifyContacts)
+                    main.deleteFrag(fragmentManager!!, addContactFragment)
+                    main.deleteFrag(fragmentManager!!, modifyContacts)
                     showFrag(detailsFragment, fragmentLayout)
                     true
-
                 } else {
                     showFrag(detailsFragment, fragmentLayout)
                     true
                 }
-
-
-//                val fragmentTransaction = fragmentManager?.beginTransaction()
-//                fragmentTransaction?.replace(R.id.frag, detailsFragment)
-//                    ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-//                    ?.commit()
-
-
             }
-
-
         })
 
 
@@ -106,59 +92,44 @@ class ContactList : Fragment() {
         db = FirebaseFirestore.getInstance()
         // luego apuntamos a la coleccion contacts donde estan guardados los contactos
         db.collection("contacts").
-            addSnapshotListener(object : EventListener<QuerySnapshot>{ // creamos un listener para captar los nuevos contactos que agreguemos (tambien aplica para los que ya tenemos)
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(
-                    value: QuerySnapshot?, // value sera igual al snapshot que hagamos
-                    error: FirebaseFirestoreException? // value sera igual al error que detecte
-                ) {
-                    if (error != null) { // si error es distinto de nulo, es decir que existe el error, lo mostraremos por consola
-                        Log.e("Error!!", error.message.toString())
-                        return // hacemos return void
-                    }
-                    // si no hay error hacemos un loop para agregar los datos al array
-                    for (dc: DocumentChange in value?.documentChanges!!){
-                        if (dc.type == DocumentChange.Type.ADDED){
-                            Log.d("DATABASE","SE ENCONTRARON DATOS!!")
-                            contactArrayList.add(dc.document.toObject(Contact::class.java)) //lo agregamos usando la clase que creamos para los contacts
-                        }
-                    }
-                    adapter.notifyDataSetChanged() // notificamos al adaptador para que cree las tarjetas
+        addSnapshotListener(object : EventListener<QuerySnapshot>{ // creamos un listener para captar los nuevos contactos que agreguemos (tambien aplica para los que ya tenemos)
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onEvent(
+                value: QuerySnapshot?, // value sera igual al snapshot que hagamos
+                error: FirebaseFirestoreException? // value sera igual al error que detecte
+            ) {
+                if (error != null) { // si error es distinto de nulo, es decir que existe el error, lo mostraremos por consola
+                    Log.e("Error!!", error.message.toString())
+                    return // hacemos return void
                 }
-            })
+                // si no hay error hacemos un loop para agregar los datos al array
+                for (dc: DocumentChange in value?.documentChanges!!){
+                    if (dc.type == DocumentChange.Type.ADDED){
+                        Log.d("DATABASE","SE ENCONTRARON DATOS!!")
+                        contactArrayList.add(dc.document.toObject(Contact::class.java)) //lo agregamos usando la clase que creamos para los contacts
+                    }
+                }
+                adapter.notifyDataSetChanged() // notificamos al adaptador para que cree las tarjetas
+            }
+        })
     }
-    //Muestra el fragment
+    //Muestra el fragment (Esta funcion es unica para este fragment)
     private fun showFrag(fragment: Fragment, fragLayOut: Int ){
         val frag = fragmentManager?.findFragmentById(fragLayOut)
         val transaction = fragmentManager?.beginTransaction()
-        val currentFragment = fragment
         //Esta condicion, sino se muestra una y otra vez el fragment, uno arriba del otro
         if(frag == null){
             transaction
                 ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                ?.add(fragLayOut, currentFragment)
+                ?.add(fragLayOut, fragment)
                 ?.commit()
         } else{
-            deleteFrag(fragLayOut)
+            main.deleteFrag(fragmentManager!!, fragLayOut)
             transaction
                 ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                ?.add(fragLayOut, currentFragment)
+                ?.add(fragLayOut, fragment)
                 ?.commit()
 
         }
     }
-
-    //Borra el fragment
-    private fun deleteFrag(fragLayOut: Int) {
-        val frag = fragmentManager?.findFragmentById(fragLayOut)
-        val transaction = fragmentManager?.beginTransaction()
-        if (frag != null) {
-            transaction
-                ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                ?.remove(frag)
-                ?.commit()
-        }
-    }
-
-
 }

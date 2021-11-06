@@ -31,8 +31,8 @@ class AddContact : Fragment() {
 
         val main = MainActivity()
 
+        //Añadimos una nueva entrada a la base de datos
         btnAdd.setOnClickListener {
-
             if(name.text.isNotEmpty() && number.text.isNotEmpty() && email.text.isNotEmpty()
                 && title.text.isNotEmpty()){
                 val contact = hashMapOf(
@@ -41,7 +41,6 @@ class AddContact : Fragment() {
                     "number" to number.text.toString(),
                     "title" to title.text.toString()
                 )
-
                 db.collection("contacts").document(number.text.toString())
                     .set(contact)
                     .addOnSuccessListener { Log.d(TAG, "Se agregaron los datos con exito") }
@@ -53,19 +52,6 @@ class AddContact : Fragment() {
                 Toast.makeText(context, "Campos Obligatorios", Toast.LENGTH_LONG).show()
             }
         }
-
         return view
-    }
-
-    //Borra el fragment
-    private fun deleteFrag(fragLayOut: Int) {
-        val frag = fragmentManager?.findFragmentById(fragLayOut)
-        val transaction = fragmentManager?.beginTransaction()
-        if (frag != null) {
-            transaction
-                ?.setCustomAnimations(R.anim.enter_from_above, R.anim.exit_to_above)
-                ?.remove(frag)
-                ?.commit()
-        }
     }
 }
