@@ -3,6 +3,7 @@ package com.example.landscapecontacts
 import android.annotation.SuppressLint
 import android.app.PendingIntent.getActivity
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,10 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.landscapecontacts.databinding.ActivityMainBinding
+
+
+//--------------------->COSAS QUE SE DEBEN PULIR PARA LA PROXIMA: <---------------------------//
+            //Pasar la posicion del objeto de lista
 
 //Creamos la extencion del interface para comunicar los fragment
 open class MainActivity : AppCompatActivity(), Communicator {
@@ -26,7 +31,15 @@ open class MainActivity : AppCompatActivity(), Communicator {
         val view = binding.root
         setContentView(view)
 
-        val btn: ImageButton = findViewById(R.id.btn)
+        //Comparamos la orientacion, caso contrario se cierra la app porque le llegan valores nulos
+        val orientation = resources.configuration.orientation
+        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            val fragment = ContactList()
+            showFrag(supportFragmentManager, fragment, R.id.frag_1)
+            binding.btn?.foreground = getDrawable(R.drawable.add_contact)
+        }
+
+
 
         //Animacion de fondo
         val animatedBackground: AnimationDrawable = binding.backgroundScreen.background as AnimationDrawable
@@ -34,12 +47,8 @@ open class MainActivity : AppCompatActivity(), Communicator {
         animatedBackground.setExitFadeDuration(2500)
         animatedBackground.start()
 
-        val fragment = ContactList()
-        showFrag(supportFragmentManager, fragment, R.id.frag_1)
-        btn.foreground = getDrawable(R.drawable.add_contact)
-
         //Ejecutamos la funcion
-        btn.setOnClickListener {
+        binding.btn?.setOnClickListener {
             if(binding.frag != null) {
                 deleteFrag(supportFragmentManager, R.id.frag)
             }
@@ -51,12 +60,6 @@ open class MainActivity : AppCompatActivity(), Communicator {
         //Cualquiera fuera la "view" sobre la cual se haga "click", cierra el fragment
         view.setOnClickListener {
             deleteFrag(supportFragmentManager, R.id.frag_3)
-        }
-
-        if (binding.frag2?.isActivated == true){
-            binding.btn?.foreground = getDrawable(R.drawable.back)
-        }else{
-            binding.btn?.foreground = getDrawable(R.drawable.add_contact)
         }
     }
 

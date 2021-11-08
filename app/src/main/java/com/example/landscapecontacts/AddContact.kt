@@ -46,10 +46,10 @@ class AddContact : Fragment() {
                     .addOnSuccessListener { Log.d(TAG, "Se agregaron los datos con exito") }
                     .addOnFailureListener{e -> Log.w(TAG, "Error en la carga", e)}
 
-                Toast.makeText(context, "Nuevo contacto creado", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.add_contact2), Toast.LENGTH_LONG).show()
                 main.deleteFrag(fragmentManager!!, addContactFragment)
             }else{
-                Toast.makeText(context, "Campos Obligatorios", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, getString(R.string.obligate_fields), Toast.LENGTH_LONG).show()
             }
         }
         return view

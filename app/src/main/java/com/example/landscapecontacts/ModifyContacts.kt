@@ -21,6 +21,8 @@ class ModifyContacts : Fragment() {
     private lateinit var btn: Button
     private lateinit var id: String
     private val db = Firebase.firestore
+    //Instanciamos el interface encargado de comunicar los fragment y el MainActivity
+    private lateinit var communicator: Communicator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,9 @@ class ModifyContacts : Fragment() {
         val vista = inflater.inflate(R.layout.fragment_modify_contacts, container, false)
 
         val main = MainActivity()
+
+        //Communicator
+        communicator = activity as Communicator
 
         val btnCancel: Button = vista.findViewById(R.id.btn_cancel)
 
@@ -44,6 +49,8 @@ class ModifyContacts : Fragment() {
         email.setText("${arguments?.getString("email")}")// email
         title.setText("${arguments?.getString("title")}")// subtitulo
 
+        //Modificar el contacto
+        //Para ello, borramos la entrada vieja, y agregamos la nueva
         btn = vista.findViewById(R.id.modify)
         btn.setOnClickListener {
             db.collection("contacts").document(number.text.toString()).delete()
@@ -58,14 +65,12 @@ class ModifyContacts : Fragment() {
             val frag: Int = (R.id.frag_3)
             main.deleteFrag(fragmentManager!!, frag)
 
-            //para refrescar el frag, se debe borroar y volver a iniciar
-            val contactList = ContactList()
-            val frag2: Int = (R.id.frag_1)
-            main.deleteFrag(fragmentManager!!, frag2)
-            main.showFrag(fragmentManager!!, contactList, frag2)
+            //Mandamos el comunicador para reiniciar el recyclerView
+            communicator.restartFrag(true)
 
         }
 
+        //Boton de cancelar, borra el fragment
         btnCancel.setOnClickListener {
             main.deleteFrag(fragmentManager!!, R.id.frag_3)
         }

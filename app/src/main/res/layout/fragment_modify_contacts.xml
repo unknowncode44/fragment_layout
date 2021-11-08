@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Modificar Contacto"
+            android:text="@string/modi_contact"
             android:textColor="@color/Silver"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
@@ -148,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:background="@drawable/shape_button_02"
-        android:text="Cancelar"
+        android:text="@string/cancel"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintStart_toEndOf="@id/modify"
