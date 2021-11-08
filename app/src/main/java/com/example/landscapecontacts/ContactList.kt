@@ -20,10 +20,11 @@ class ContactList : Fragment() {
     var isActive: Boolean = false
     private var db = Firebase.firestore // creamos una variable de tipo firestore
     private lateinit var recyclerView: RecyclerView // variable para el recycler
-    private lateinit var contactArrayList: ArrayList<Contact> // variable para el array
-    private lateinit var adapter: ContactCardAdapter // otra para el adapter
+    lateinit var contactArrayList: ArrayList<Contact> // variable para el array
+    lateinit var adapter: ContactCardAdapter // otra para el adapter
     private var main = MainActivity()
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

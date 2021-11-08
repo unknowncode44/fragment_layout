@@ -1,6 +1,7 @@
 package com.example.landscapecontacts
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,16 +25,20 @@ class ContactsDetails : Fragment() {
     private lateinit var title: TextView
     private lateinit var image: ImageView
     private lateinit var imageUrl: String
-    private lateinit var btn2: Button
     private val db = Firebase.firestore
+    private val main = MainActivity()
+    //Instanciamos el interface encargado de comunicar los fragment y el MainActivity
+    private lateinit var communicator: Communicator
 
-
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // creamos variable vista, instanciamos la vista del contact_details
         val vista: View = inflater.inflate(R.layout.contacts_details, container, false)
+
+        communicator = activity as Communicator
 
         // instanciamos los componentes visuales del layout a traves de sus ids
         image = vista.findViewById(R.id.detail_image) // imagen
@@ -69,6 +74,14 @@ class ContactsDetails : Fragment() {
             modifyFragment.arguments = bundle // le pasamos el bundle con los datos guardados
             showFrag(modifyFragment, fragmentLayout)
             deleteFrag(fragLayOut2)
+        }
+
+        //Borramos el contacto
+        val btnDelete: ImageButton = vista.findViewById(R.id.delete)
+        btnDelete.setOnClickListener {
+            deleteContact(number.text.toString())
+            main.deleteFrag(fragmentManager!!, fragLayOut2)
+            communicator.restartFrag(true)
         }
 
         // una vez que ya tenemos los valores instanciados en sus respectivas variables, solo resta inflar la vista

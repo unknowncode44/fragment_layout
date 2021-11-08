@@ -44,7 +44,7 @@ class ModifyContacts : Fragment() {
         email.setText("${arguments?.getString("email")}")// email
         title.setText("${arguments?.getString("title")}")// subtitulo
 
-        btn = vista.findViewById(R.id.btn)
+        btn = vista.findViewById(R.id.modify)
         btn.setOnClickListener {
             db.collection("contacts").document(number.text.toString()).delete()
             db.collection("contacts").document(number.text.toString()).set(

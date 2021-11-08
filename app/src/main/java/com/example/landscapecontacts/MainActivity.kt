@@ -1,6 +1,8 @@
 package com.example.landscapecontacts
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,25 +12,24 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.landscapecontacts.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+//Creamos la extencion del interface para comunicar los fragment
+open class MainActivity : AppCompatActivity(), Communicator {
     var isActive: Boolean = false
 
     //Usamos el binding para hacer referencia al layout con la variable "view"
     //Despues la implementamos con el setOnClickListener
     lateinit var binding: ActivityMainBinding
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        //Declaramos el boton
-        val btnRef: Int = (R.id.btn)
-        val btn: ImageButton = findViewById(btnRef)
+        val btn: ImageButton = findViewById(R.id.btn)
 
         //Animacion de fondo
-        val animatedBackground:AnimationDrawable = binding.backgroundScreen.background as AnimationDrawable
+        val animatedBackground: AnimationDrawable = binding.backgroundScreen.background as AnimationDrawable
         animatedBackground.setEnterFadeDuration(2500)
         animatedBackground.setExitFadeDuration(2500)
         animatedBackground.start()
@@ -73,8 +74,6 @@ class MainActivity : AppCompatActivity() {
                 .setCustomAnimations(R.anim.enter_from_above, R.anim.enter_from_above)
                 .add(frame, fragment)
                 .commit()
-            //val btn: ImageButton = findViewById(btnRef)
-            //btn.foreground = getDrawable(R.drawable.back)
         } else{
             deleteFrag(supportFragmentManager, frame)
         }
@@ -90,7 +89,16 @@ class MainActivity : AppCompatActivity() {
                 .setCustomAnimations(R.anim.exit_to_above, R.anim.exit_to_above)
                 .remove(frag)
                 .commit()
-            //binding.btn?.foreground = getDrawable(R.drawable.add_contact)
+        }
+    }
+
+    //Sobreescribimos la funcion del interface
+    override fun restartFrag(boolean: Boolean) {
+        if (boolean) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction
+                .replace(R.id.frag_1, ContactList())
+                .commit()
         }
     }
 }
